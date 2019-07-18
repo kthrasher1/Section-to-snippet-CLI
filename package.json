@@ -1,0 +1,23 @@
+{
+  "name": "section-to-snippet-cli",
+  "version": "1.0.0",
+  "description": "Small script to 'convert' a Shopify Liquid section to a snippet to be used dynamically.",
+  "main": "Section-to-Snippet.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kthrasher1/Section-to-snippet-CLI.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kthrasher1/Section-to-snippet-CLI/issues"
+  },
+  "homepage": "https://github.com/kthrasher1/Section-to-snippet-CLI#readme",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "inquirer-fuzzy-path": "^2.0.3"
+  }
+}
