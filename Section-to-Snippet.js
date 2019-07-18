@@ -88,13 +88,13 @@ inquirer
 
     .then(answers => {
 
-        let locales = fs.readFileSync(path.resolve(answers.srcDirectory, answers.srcFile), {
+        let data = fs.readFileSync(path.resolve(answers.srcDirectory, answers.srcFile), {
 
             encoding: 'utf8'
 
         })
 
-        let result = locales.replace(/section\./gi, 'block.');
+        let result = data.replace(/section\./gi, 'block.');
 
  
 
@@ -102,7 +102,7 @@ inquirer
 
             result,
 
-            locales,
+            data,
 
             answers
 
@@ -132,19 +132,19 @@ inquirer
 
     .then(answers => {
 
-        let locales = fs.readFileSync(path.resolve(answers.outputDirectory, `${answers.outputFile}.liquid`), {
+        let data = fs.readFileSync(path.resolve(answers.outputDirectory, `${answers.outputFile}.liquid`), {
 
             encoding: 'utf8'
 
         })
 
-        var matchJson = locales.match(/{% schema %}([^<]*){% endschema %}/);
+        var matchJson = data.match(/{% schema %}([^<]*){% endschema %}/);
 
    
 
         matchJson.forEach(match => {
             
-            locales = locales.replace(match, "");
+            data = data.replace(match, "");
             fs.writeFileSync(path.resolve(answers.outputDirectory, `${answers.outputFile}.json`), match)
         })
 
@@ -152,7 +152,7 @@ inquirer
 
             path.resolve(answers.outputDirectory, `${answers.outputFile}.liquid`),
 
-            locales
+            data
 
         )
 
