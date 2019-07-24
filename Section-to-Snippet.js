@@ -138,7 +138,7 @@ inquirer
 
         })
 
-        var matchJson = data.match(/{% schema %}([^<]*){% endschema %}/);
+        var matchJson = data.match(/{% schema %}([^]*){% endschema %}/);
 
    
 
