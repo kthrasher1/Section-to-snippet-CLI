@@ -1,0 +1,47 @@
+{% if article.image and section.settings.show_featured_image %}
+<div class="article-image align-center {% unless settings.use_fullwidth_layout %}container{% endunless %}">{{ article.image | img_url: '1080x', format: "pjpg" | img_tag: article.image.alt }}</div>
+{% endif %}
+
+<div class="container">
+    <div class="page-header cf">
+      <h1 class="majortitle">{{ article.title }}</h1>
+
+      <div class="social-area">
+        {% include 'social-sharing' with article %}
+        <a class="rsslink" href="{{ blog.url }}.atom" title="{{ blog.title | escape }} RSS"><i class="icon-rss"></i></a>
+      </div>
+    </div>
+</div><!-- /.pagetitle -->
+
+{% schema %}
+  {
+    "name": "Article pages",
+    "settings": [
+	  {
+        "type": "checkbox",
+        "id": "show_featured_image",
+        "label": "Show featured image",
+        "default": true
+      },
+	  {
+        "type": "checkbox",
+        "id": "show_date",
+        "label": "Show date",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_author",
+        "label": "Show author",
+        "default": true
+      },
+	  {
+        "type": "checkbox",
+        "id": "show_article_tags",
+        "label": "Show article tags",
+        "default": true
+      }
+	]
+  }
+{% endschema %}
+

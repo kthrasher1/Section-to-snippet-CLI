@@ -22,7 +22,7 @@ inquirer
 
             message: 'Where are the section files saved?',
 
-            default: 'src/sections',
+            default: 'sections',
 
             excludePath: path => path.startsWith('node_modules'),
 
@@ -56,7 +56,7 @@ inquirer
 
             message: 'Where do you want to output your snippet?',
 
-            default: 'src/snippets',
+            default: 'snippets',
 
             excludePath(path) {
 
@@ -78,7 +78,11 @@ inquirer
 
             message: 'What should the snippet be called?',
 
-            default: 'new-snippet'
+            default(answers){
+                
+                let appendedSrc = answers.srcFile.replace(".liquid", "-snippet")
+                return appendedSrc;
+            }
 
         },
 
@@ -152,10 +156,6 @@ inquirer
             console.log("JSON detected and outputted to: %s ", `${answers.outputFile}.json`)
         }
    
-
-      
-
- 
 
         fs.writeFileSync(
 
