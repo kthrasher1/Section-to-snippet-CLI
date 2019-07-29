@@ -4,5 +4,6 @@ Small script to 'convert' a Shopify Liquid section to a snippet to be used dynam
  
 
 Requires:
+  * Node
   * Inquirer Fuzzy path
   * FS
