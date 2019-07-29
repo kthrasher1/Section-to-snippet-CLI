@@ -22,7 +22,7 @@ inquirer
 
             message: 'Where are the section files saved?',
 
-            default: 'sections',
+            default: 'src/sections',
 
             excludePath: path => path.startsWith('node_modules'),
 
@@ -56,7 +56,7 @@ inquirer
 
             message: 'Where do you want to output your snippet?',
 
-            default: 'snippets',
+            default: 'src/snippets',
 
             excludePath(path) {
 
@@ -138,15 +138,24 @@ inquirer
 
         })
 
-        var matchJson = data.match(/{% schema %}([^<]*){% endschema %}/);
 
+  
+        var matchJson = data.match(/{% schema %}([^]*){% endschema %}/);
+
+        if(matchJson != null){
+            matchJson.forEach(match => {
+            
+                data = data.replace(match, "");
+                fs.writeFileSync(path.resolve(answers.outputDirectory, `${answers.outputFile}.json`), match);
+            })
+
+            console.log("JSON detected and outputted to: %s ", `${answers.outputFile}.json`)
+        }
    
 
-        matchJson.forEach(match => {
-            
-            data = data.replace(match, "");
-            fs.writeFileSync(path.resolve(answers.outputDirectory, `${answers.outputFile}.json`), match)
-        })
+      
+
+ 
 
         fs.writeFileSync(
 
@@ -155,5 +164,6 @@ inquirer
             data
 
         )
+        console.log("Convertion Complete - file outputted to: %s from %s", answers.outputDirectory, answers.srcDirectory)
 
     })
